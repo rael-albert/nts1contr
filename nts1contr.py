@@ -49,18 +49,15 @@ def main(args=None):
     parser.add_argument('--filename', '-f', type=str, help='JSON file')
     args = parser.parse_args()
 
-    if (args.write is None and args.load is None):
-        parser.error("either --write or --load are mandatory")
+    if (args.write is False and args.load is False):
+        parser.error("either --write or --load is mandatory")
 
-    if ((args.load is not None or args.write is not None) and args.filename is None):
+    if (args.filename is None):
         parser.error("--filename parameter is needed")
-
-    if (args.filename is not None and (args.load is None or args.write is None)):
-        parser.error("--write or --load parameter is needed")
 
     filename = os.path.join(os.path.dirname(__file__), args.filename)
 
-    if (not os.path.isfile(filename)):
+    if (args.load is True and not os.path.isfile(filename)):
         parser.error('Filename %s does not exist' % (filename))
 
     midi_out = rtmidi.MidiOut()
