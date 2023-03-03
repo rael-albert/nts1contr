@@ -91,14 +91,18 @@ def load(midi_out, filename):
         bank = json.load(json_file)
         for cc, values in bank['values'].items():
             cc = int(cc)
-            if (type(values) is dict):
+            if (cc in [42, 88, 89, 90]):
                 choosen_value = midi_specs[cc][int(values['value'])]
+            elif (cc in [14, 53, 117, 118]):
+                choosen_value = midi_specs[cc][int(values)]
             else:
-                choosen_value = values
+                choosen_value = int(values)
 
-            message = [0xb0, cc, int(choosen_value)]
+            message = [0xb0, cc, choosen_value]
             print(message)
             midi_out.send_message(message)
+
+    print('Values loaded sucessfully.')
 
 
 def write(midi_out, filename):
@@ -112,6 +116,7 @@ def write(midi_out, filename):
         random_value = random.choice(values)
 
         message = [0xb0, cc, random_value]
+        print(message)
         midi_out.send_message(message)
 
         if (cc in [42, 88, 89, 90]):
