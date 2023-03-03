@@ -8,7 +8,6 @@ import random
 import rtmidi
 
 midi_specs = {
-    0: range(0, 127),
     14: [0, 25, 50, 75],
     16: range(0, 127),
     19: range(0, 127),
