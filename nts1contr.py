@@ -28,7 +28,7 @@ midi_specs = {
     44: range(0, 127),
     45: range(0, 127),
     46: range(0, 127),
-    53: [0, 25, 50, 75],  # osc_type,
+    53: [0, 25, 50, 75, 127],  # osc_type,
     54: range(0, 127),
     55: range(0, 127),
     88: [0, 25, 50, 75, 127],  # fx_modulation
