@@ -90,6 +90,10 @@ def load(midi_out, filename):
         bank = json.load(json_file)
         for cc, values in bank['values'].items():
             cc = int(cc)
+
+            if (cc not in midi_specs):
+                continue
+
             if (cc in [42, 88, 89, 90]):
                 choosen_value = midi_specs[cc][int(values['value'])]
             elif (cc in [14, 53, 117, 118]):
