@@ -94,8 +94,6 @@ def load(midi_out, filename):
             if (cc not in midi_specs):
                 continue
 
-            print(cc)
-
             if (cc in [42, 88, 89, 90]):
                 choosen_value = midi_specs[cc][int(values['value'])]
             elif (cc in [14, 53, 117, 118]):
