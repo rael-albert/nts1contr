@@ -8,7 +8,7 @@ import random
 import rtmidi
 
 midi_specs = {
-    14: [0, 25, 50, 75],
+    14: [0, 25, 50, 75, 127],
     16: range(0, 127),
     19: range(0, 127),
     20: range(0, 127),
@@ -93,6 +93,8 @@ def load(midi_out, filename):
 
             if (cc not in midi_specs):
                 continue
+
+            print(cc)
 
             if (cc in [42, 88, 89, 90]):
                 choosen_value = midi_specs[cc][int(values['value'])]
